@@ -1,6 +1,7 @@
+/*eslint-disable */
 export function getMergeSortAnimations(array) {
-    let animations  = [];
-    let auxillaryArray = array.slice();
+    const animations  = [];
+    const auxillaryArray = array.slice();
     mergeSort(auxillaryArray, 0, auxillaryArray.length - 1, animations);
     const javaScriptSortedArray = array.slice().sort((a, b) => a - b);
     console.log(arraysAreEqual(javaScriptSortedArray, auxillaryArray));
@@ -18,7 +19,7 @@ function mergeSort(auxillaryArray, startIndex, endIndex, animations) {
 }
 
 function merge(auxillaryArray, startIndex, middleIndex, endIndex, animations) {
-    let sortArray = [];
+    const sortArray = [];
     let i = startIndex;
     let j = middleIndex + 1;
     while(i <= middleIndex && j <= endIndex) {
@@ -60,3 +61,4 @@ function arraysAreEqual(firstArray, secondArray) {
     }
     return true;
 }
+/*eslint-disable */

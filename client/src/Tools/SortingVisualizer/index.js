@@ -1,5 +1,5 @@
+/*eslint-disable */
 import React from 'react';
-
 import { getMergeSortAnimations } from 'src/Algorithms/SortingAlgorithms/MergeSort';
 import { getHeapSortAnimations } from 'src/Algorithms/SortingAlgorithms/HeapSort';
 import { getQuickSortAnimations } from 'src/Algorithms/SortingAlgorithms/QuickSort';
@@ -34,6 +34,7 @@ const algorithms = {
   "bucketSort": getBucketSortAnimations,
   "countingSort": getCountingSortAnimations
 }
+
 export default class SortingVisualizer extends React.Component {
   constructor(props) {
     super(props);
@@ -169,7 +170,7 @@ export default class SortingVisualizer extends React.Component {
             style={{
               backgroundColor: PRIMARY_COLOR,
               height: `${value}px`,
-            }}></div>//{value} to check if algorithm is working or not 
+            }} />// {value} to check if algorithm is working or not 
         ))}
 
 
@@ -183,8 +184,8 @@ export default class SortingVisualizer extends React.Component {
         <button id="shellSort" style={{ marginRight: '8px' }} onClick={() => this.sort('shellSort')}>Shell Sort</button>
         <button id="cycleSort" style={{ marginRight: '8px' }} onClick={() => this.sort('cycleSort')}>Cycle Sort</button>
 
-        {/*this algos below does not compare array elements hence declared different function bktsort() 
-        also it requires extra array so need to work on it but the animation works fine*/}
+        {/* this algos below does not compare array elements hence declared different function bktsort() 
+        also it requires extra array so need to work on it but the animation works fine */}
         
         <button id="countingSort" style={{ marginRight: '8px' }} onClick={() => this.bktsort('countingSort')}>Counting Sort</button>
         <button id="radixSort" style={{ marginRight: '8px' }} onClick={() => this.bktsort('radixSort')}>Radix Sort</button>
@@ -209,3 +210,5 @@ function arraysAreEqual(arrayOne, arrayTwo) {
   }
   return true;
 }
+
+/*eslint-disable */

@@ -1,6 +1,7 @@
+/*eslint-disable */
 export function getRadixSortAnimations(array){
-    let animations = [];
-    let auxillaryArray = array.slice();
+    const animations = [];
+    const auxillaryArray = array.slice();
     radixSort(auxillaryArray, animations);
     const javaScriptSortedArray = array.slice().sort((a, b) => a - b);
     console.log("sort works correctly? ", arraysAreEqual(javaScriptSortedArray, auxillaryArray));
@@ -21,9 +22,9 @@ function getMax(arr,n)
 
 function countSort(arr, n, exp, animations)
 {
-	let output = new Array(n); // output array
+	const output = new Array(n); // output array
 		let i;
-		let count = new Array(10);
+		const count = new Array(10);
 		for(let i=0;i<10;i++)
 			count[i]=0;
 
@@ -31,7 +32,7 @@ function countSort(arr, n, exp, animations)
 		for (i = 0; i < n; i++){
             animations.push(["comparision1", i]);
             animations.push(["comparision2", i]);
-			//animations.push(i);
+			// animations.push(i);
             count[Math.floor(arr[i] / exp) % 10]++;
         }
 	
@@ -43,7 +44,7 @@ function countSort(arr, n, exp, animations)
             animations.push(["comparision1", i]);
             animations.push(["comparision2", i]);
             animations.push(["overwrite", count[Math.floor(arr[i] / exp) % 10] - 1, arr[i]]);
-            //animations.push(i)
+            // animations.push(i)
 			output[count[Math.floor(arr[i] / exp) % 10] - 1] = arr[i];
 			count[Math.floor(arr[i] / exp) % 10]--;
 		}
@@ -54,8 +55,8 @@ function countSort(arr, n, exp, animations)
 
 function radixSort(arr, animations)
 {
-    let n=arr.length;
-		let m = getMax(arr, n);
+    const n=arr.length;
+		const m = getMax(arr, n);
 
 		for (let exp = 1; Math.floor(m / exp) > 0; exp *= 10)
 			countSort(arr, n, exp, animations);
@@ -63,7 +64,7 @@ function radixSort(arr, animations)
 
 
 function swap(auxillaryArray, firstIndex, secondIndex) {
-    let temp = auxillaryArray[firstIndex];
+    const temp = auxillaryArray[firstIndex];
     auxillaryArray[firstIndex] = auxillaryArray[secondIndex];
     auxillaryArray[secondIndex] = temp;
 }
@@ -79,3 +80,4 @@ function arraysAreEqual(firstArray, secondArray) {
     }
     return true;
 }
+/*eslint-disable */

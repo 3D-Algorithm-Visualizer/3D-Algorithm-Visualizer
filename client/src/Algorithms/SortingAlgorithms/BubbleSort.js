@@ -1,6 +1,7 @@
+/*eslint-disable */
 export function getBubbleSortAnimations(array) {
-    let animations  = [];
-    let auxillaryArray = array.slice();
+    const animations  = [];
+    const auxillaryArray = array.slice();
     bubbleSort(auxillaryArray, animations);
     const javaScriptSortedArray = array.slice().sort((a, b) => a - b);
     console.log("sort works correctly? ",arraysAreEqual(javaScriptSortedArray, auxillaryArray));
@@ -29,7 +30,7 @@ function bubbleSort(auxillaryArray, animations) {
 }
 
 function swap(auxillaryArray, firstIndex, secondIndex) {
-    let temp = auxillaryArray[firstIndex];
+    const temp = auxillaryArray[firstIndex];
     auxillaryArray[firstIndex] = auxillaryArray[secondIndex];
     auxillaryArray[secondIndex] = temp;
 }
@@ -45,3 +46,4 @@ function arraysAreEqual(firstArray, secondArray) {
     }
     return true;
 }
+/*eslint-disable */

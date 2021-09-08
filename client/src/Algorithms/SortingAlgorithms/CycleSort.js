@@ -1,6 +1,7 @@
+/*eslint-disable */
 export function getCycleSortAnimations(array) {
-    let animations = [];
-    let auxillaryArray = array.slice();
+    const animations = [];
+    const auxillaryArray = array.slice();
     cycleSort(auxillaryArray, animations);
     const javaScriptSortedArray = array.slice().sort((a, b) => a - b);
     console.log("sort works correctly? ", arraysAreEqual(javaScriptSortedArray, auxillaryArray));
@@ -36,11 +37,11 @@ function cycleSort(arr, animations) {
         }
 
         if (pos != cycle_start) {
-            //swap a[pos] and item
+            // swap a[pos] and item
 
             animations.push(["swap", pos, item]);
-            //animations.push(["swap", toswap, arr[pos]]);
-            let temp = item;
+            // animations.push(["swap", toswap, arr[pos]]);
+            const temp = item;
             item = arr[pos];
             arr[pos] = temp;
       
@@ -63,16 +64,16 @@ function cycleSort(arr, animations) {
             }
 
             if (item != arr[pos]) {
-                //swap a[pos] with item
+                // swap a[pos] with item
                 animations.push(["swap", pos, item]);
-                //animations.push(["swap", toswap, arr[pos]]);
-                let temp = item;
+                // animations.push(["swap", toswap, arr[pos]]);
+                const temp = item;
                 item = arr[pos];
                 arr[pos] = temp;
-                //animations.push(["overwrite", pos, item]);
+                // animations.push(["overwrite", pos, item]);
 
-                //animations.push(["swap", toswap, arr[pos]]);
-                //swap(arr, pos, toswap);
+                // animations.push(["swap", toswap, arr[pos]]);
+                // swap(arr, pos, toswap);
                 writes++;
             }
         }
@@ -81,7 +82,7 @@ function cycleSort(arr, animations) {
 
 
 function swap(auxillaryArray, firstIndex, secondIndex) {
-    let temp = auxillaryArray[firstIndex];
+    const temp = auxillaryArray[firstIndex];
     auxillaryArray[firstIndex] = auxillaryArray[secondIndex];
     auxillaryArray[secondIndex] = temp;
 }
@@ -97,3 +98,4 @@ function arraysAreEqual(firstArray, secondArray) {
     }
     return true;
 }
+/*eslint-disable */

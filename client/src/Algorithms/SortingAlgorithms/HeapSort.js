@@ -1,6 +1,7 @@
+/*eslint-disable */
 export function getHeapSortAnimations(array) {
-    let animations = [];
-    let auxillaryArray = array.slice();
+    const animations = [];
+    const auxillaryArray = array.slice();
     heapSort(auxillaryArray, animations);
     const javaScriptSortedArray = array.slice().sort((a, b) => a - b);
     console.log("sort works correctly? ", arraysAreEqual(javaScriptSortedArray, auxillaryArray));
@@ -14,14 +15,14 @@ function buildHeap(auxillaryArray, N, animations){
         maxHeapify(auxillaryArray, N, i, animations);
     }
 
-}*/
+} */
 
 function heapSort(auxillaryArray, animations){
     const N = auxillaryArray.length;
     for(let i = (N-2)/2; i>=0; i--){
         maxHeapify(auxillaryArray, N, i, animations);
     }
-    //buildHeap(auxillaryArray, N, animations);
+    // buildHeap(auxillaryArray, N, animations);
     for(let i=N-1; i>=1; i--){
         animations.push(["swap", i, auxillaryArray[0]]);
         animations.push(["swap", 0, auxillaryArray[i]]);
@@ -53,7 +54,7 @@ function maxHeapify(auxillaryArray, N, i, animations){
 }
 
 function swap(auxillaryArray, firstIndex, secondIndex) {
-    let temp = auxillaryArray[firstIndex];
+    const temp = auxillaryArray[firstIndex];
     auxillaryArray[firstIndex] = auxillaryArray[secondIndex];
     auxillaryArray[secondIndex] = temp;
 }
@@ -71,7 +72,7 @@ function arraysAreEqual(firstArray, secondArray) {
 }
 
 
-/*Heap sort logic
+/* Heap sort logic
 
 void maxHeapify(a[], n, i){
     let largest=i;
@@ -107,3 +108,5 @@ HeapSort(){
 }
 
 */
+
+/*eslint-disable */

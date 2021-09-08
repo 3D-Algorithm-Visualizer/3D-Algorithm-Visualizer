@@ -1,6 +1,7 @@
+/*eslint-disable */
 export function getQuickSortAnimations(array) {
-    let animations = [];
-    let auxillaryArray = array.slice();
+    const animations = [];
+    const auxillaryArray = array.slice();
     quickSort(auxillaryArray, 0, auxillaryArray.length - 1, animations);
     const javaScriptSortedArray = array.slice().sort((a, b) => a - b);
     console.log("sort works correctly? ", arraysAreEqual(javaScriptSortedArray, auxillaryArray));
@@ -18,7 +19,7 @@ function quickSort(auxillaryArray, startIndex, endIndex, animations) {
 }
 
 function partitionArray(auxillaryArray, startIndex, endIndex, animations) {
-    let pivotIndex = randomIntFromInterval(startIndex, endIndex);
+    const pivotIndex = randomIntFromInterval(startIndex, endIndex);
 
     animations.push(["comparision1", pivotIndex, endIndex]);
     animations.push(["swap", pivotIndex, auxillaryArray[endIndex]]);
@@ -50,7 +51,7 @@ function partitionArray(auxillaryArray, startIndex, endIndex, animations) {
 }
 
 function swap(auxillaryArray, firstIndex, secondIndex) {
-    let temp = auxillaryArray[firstIndex];
+    const temp = auxillaryArray[firstIndex];
     auxillaryArray[firstIndex] = auxillaryArray[secondIndex];
     auxillaryArray[secondIndex] = temp;
 }
@@ -99,4 +100,5 @@ function Hpartition(a, low, high){
             return j;
         }
     }
-}*/
+} */
+/*eslint-disable */

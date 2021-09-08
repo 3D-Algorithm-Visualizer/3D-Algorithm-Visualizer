@@ -1,6 +1,7 @@
+/*eslint-disable */
 export function getShellSortAnimations(array){
-    let animations  = [];
-    let auxillaryArray = array.slice();
+    const animations  = [];
+    const auxillaryArray = array.slice();
     shellSort(auxillaryArray, animations);
     const javaScriptSortedArray = array.slice().sort((a, b) => a - b);
     console.log("sort works correctly? ",arraysAreEqual(javaScriptSortedArray, auxillaryArray));
@@ -8,11 +9,11 @@ export function getShellSortAnimations(array){
     return [animations, array];
 }
 function shellSort(auxillaryArray, animations) {
-	let n = auxillaryArray.length;
+	const n = auxillaryArray.length;
 
 	for (let gap = Math.floor(n/2); gap > 0; gap = Math.floor(gap/2))	{
 		for (let i = gap; i < n; i += 1)  {
-			let temp = auxillaryArray[i];
+			const temp = auxillaryArray[i];
 			
 			let j;
 			for (j = i; j >= gap && auxillaryArray[j-gap] > temp; j-=gap)  {
@@ -39,3 +40,4 @@ function arraysAreEqual(firstArray, secondArray) {
     }
     return true;
 }
+/*eslint-disable */
