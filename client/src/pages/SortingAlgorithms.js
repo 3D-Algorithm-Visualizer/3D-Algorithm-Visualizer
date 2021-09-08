@@ -1,10 +1,8 @@
 import React from 'react';
 import { Typography } from '@material-ui/core';
-
+import SortingVisualizer from 'src/Tools/SortingVisualizer/index';
 const PfAlgorithms = (props) => (
-  <Typography variant="h3" sx={{ px: 5, mt: 10, mb: 5 }}>
-    Sorting Algorithms
-  </Typography>
+  <SortingVisualizer></SortingVisualizer>
 );
 
 export default PfAlgorithms;
