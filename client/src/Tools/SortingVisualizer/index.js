@@ -162,7 +162,9 @@ export default class SortingVisualizer extends React.Component {
     const { array } = this.state;
 
     return (
+      <div>
       <div className="array-container">
+        <div className="array-container-bars">
         {array.map((value, idx) => (
           <div
             className="array-bar"
@@ -173,7 +175,10 @@ export default class SortingVisualizer extends React.Component {
             }} />// {value} to check if algorithm is working or not 
         ))}
 
+        </div>
+       
 
+        <br></br>
         <button id="generateNewArray" style={{ marginRight: '8px' }} onClick={() => this.resetArray()}>Generate New Array</button>
         <button id="mergeSort" style={{ marginRight: '8px' }} onClick={() => this.sort('mergeSort')}>Merge Sort</button>
         <button id="quickSort" style={{ marginRight: '8px' }} onClick={() => this.sort('quickSort')}>Quick Sort</button>
@@ -191,6 +196,7 @@ export default class SortingVisualizer extends React.Component {
         <button id="radixSort" style={{ marginRight: '8px' }} onClick={() => this.bktsort('radixSort')}>Radix Sort</button>
         <button id="bucketSort" style={{ marginRight: '8px' }} onClick={() => this.bktsort('bucketSort')}>Bucket Sort</button>
       </div>
+    </div>
 
     );
 

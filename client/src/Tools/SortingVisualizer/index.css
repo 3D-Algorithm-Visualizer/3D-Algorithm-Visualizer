@@ -1,12 +1,18 @@
 .array-container {
-    position: absolute;
+
     left: 10px;
     right: 20px;
     top: 20px; 
   }
   
+
+  .array-container-bars {
+    max-width: 700px;
+    margin: auto;
+
+  }
   .array-bar {
-    width: 10px;
+    width:30px;
     display: inline-block;
     margin: 0 2px;
   }
