@@ -7,13 +7,54 @@
   
 
   .array-container-bars {
-    max-width: 700px;
+    max-width: 800px;
     margin: auto;
 
   }
   .array-bar {
     width:30px;
+    margin: 0 6px;
+  }
+
+  .array-bar-parent {
     display: inline-block;
-    margin: 0 2px;
+    text-align: center;
   }
   
+.array-container-bars-paper{
+  padding: 4%;
+  align-items: center;
+}
+
+.array-bar-values{
+
+  width: 100%;
+  padding: 1px
+}
+
+
+
+
+
+
+@media only screen and (max-width: 600px) {
+  .array-bar {
+    width:15px;
+    margin: 0 1px;
+  }
+
+  .array-bar-values{
+    font-size: smaller;
+  }
+}
+
+@media only screen and (max-width: 400px) {
+  .array-bar {
+    width:8px;
+    margin: 0 0;
+  }
+
+  .array-bar-values{
+    font-size: x-small;
+  }
+}
