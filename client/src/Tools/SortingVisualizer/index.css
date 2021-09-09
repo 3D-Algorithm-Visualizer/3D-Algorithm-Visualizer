@@ -33,6 +33,9 @@
 }
 
 
+.array-bar-values-parent{
+  display: flex
+}
 
 
 
@@ -40,7 +43,7 @@
 @media only screen and (max-width: 600px) {
   .array-bar {
     width:15px;
-    margin: 0 1px;
+    margin: 0 6px;
   }
 
   .array-bar-values{
@@ -50,8 +53,8 @@
 
 @media only screen and (max-width: 400px) {
   .array-bar {
-    width:8px;
-    margin: 0 0;
+    width:5px;
+    margin: 0 3px;
   }
 
   .array-bar-values{

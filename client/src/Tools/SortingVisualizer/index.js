@@ -11,18 +11,18 @@ import { getBubbleSortAnimations } from 'src/Algorithms/SortingAlgorithms/Bubble
 import { getCycleSortAnimations } from 'src/Algorithms/SortingAlgorithms/CycleSort';
 import { getCountingSortAnimations } from 'src/Algorithms/SortingAlgorithms/CountingSort';
 import { getRadixSortAnimations } from 'src/Algorithms/SortingAlgorithms/RadixSort';
-import { getBucketSortAnimations } from'src/Algorithms/SortingAlgorithms/BucketSort';
+import { getBucketSortAnimations } from 'src/Algorithms/SortingAlgorithms/BucketSort';
 
 //style
 import './index.css';
 //components
 import Bars from "./bars"
 //Material ui components
-import {Paper , Grid , Button} from "@material-ui/core"
+import { Paper, Grid, Button } from "@material-ui/core"
 
 const BAR_UI_RELATIVE_HEIGHTS = 20; //will be multiplied with array value to give bar height in pixels
 
-const ANIMATION_SPEED_MS = 50;
+const ANIMATION_SPEED_MS = 100;
 
 const NUMBER_OF_ARRAY_BARS = 16;
 
@@ -121,7 +121,7 @@ export default class SortingVisualizer extends React.Component {
         const barOneStyle = arrayBars[barOneIndex].style;
         setTimeout(() => {
           barOneStyle.backgroundColor = color;
-          
+
         }, i * ANIMATION_SPEED_MS);
       }
       else {
@@ -131,7 +131,7 @@ export default class SortingVisualizer extends React.Component {
         }
         const barStyle = arrayBars[barIndex].style;
         setTimeout(() => {
-          barStyle.height = `${newHeight *  BAR_UI_RELATIVE_HEIGHTS}px`;
+          barStyle.height = `${newHeight * BAR_UI_RELATIVE_HEIGHTS}px`;
           arrayBarsValues[barIndex].innerText = newHeight
         }, i * ANIMATION_SPEED_MS);
       }
@@ -153,11 +153,11 @@ export default class SortingVisualizer extends React.Component {
         //change colors
         const barOneStyle = arrayBars[barOneIndex].style;
         const barTwoStyle = arrayBars[barTwoIndex].style;
-        const barOneValueStyle = arrayBarsValues [barOneIndex].style;
-        const barTwoValueStyle = arrayBarsValues [barTwoIndex].style;
+        const barOneValueStyle = arrayBarsValues[barOneIndex].style;
+        const barTwoValueStyle = arrayBarsValues[barTwoIndex].style;
         setTimeout(() => {
-          barOneStyle.backgroundColor = barOneValueStyle.color =  color;
-          barTwoStyle.backgroundColor =   barTwoValueStyle.color = color;
+          barOneStyle.backgroundColor = barOneValueStyle.color = color;
+          barTwoStyle.backgroundColor = barTwoValueStyle.color = color;
         }, i * ANIMATION_SPEED_MS);
       }
       else {
@@ -182,46 +182,46 @@ export default class SortingVisualizer extends React.Component {
 
     return (
       <div>
-          <Grid container spacing={1}>
-           <Grid item xs={12} sm={2}>
-           <div>
-        <Button  variant="contained" id="generateNewArray" style={{ marginRight: '8px' }} onClick={() => this.resetArray()}>Generate New Array</Button>
-        <Button id="mergeSort" style={{ marginRight: '8px' }} onClick={() => this.sort('mergeSort')}>Merge Sort</Button>
-        <Button id="quickSort" style={{ marginRight: '8px' }} onClick={() => this.sort('quickSort')}>Quick Sort</Button>
-        <Button id="heapSort" style={{ marginRight: '8px' }} onClick={() => this.sort('heapSort')}>Heap Sort</Button>
-        <Button id="bubbleSort" style={{ marginRight: '8px' }} onClick={() => this.sort('bubbleSort')}>Bubble Sort</Button>
-        <Button id="insertionSort" style={{ marginRight: '8px' }} onClick={() => this.sort('insertionSort')}>Insertion Sort</Button>
-        <Button id="selectionSort" style={{ marginRight: '8px' }} onClick={() => this.sort('selectionSort')}>Selection Sort</Button>
-        <Button id="shellSort" style={{ marginRight: '8px' }} onClick={() => this.sort('shellSort')}>Shell Sort</Button>
-        <Button id="cycleSort" style={{ marginRight: '8px' }} onClick={() => this.sort('cycleSort')}>Cycle Sort</Button>
+        <Grid container spacing={1}>
+          <Grid item xs={12} sm={2}>
+            <div>
+              <Button variant="contained" id="generateNewArray" style={{ marginRight: '8px' }} onClick={() => this.resetArray()}>Generate New Array</Button>
+              <Button id="mergeSort" style={{ marginRight: '8px' }} onClick={() => this.sort('mergeSort')}>Merge Sort</Button>
+              <Button id="quickSort" style={{ marginRight: '8px' }} onClick={() => this.sort('quickSort')}>Quick Sort</Button>
+              <Button id="heapSort" style={{ marginRight: '8px' }} onClick={() => this.sort('heapSort')}>Heap Sort</Button>
+              <Button id="bubbleSort" style={{ marginRight: '8px' }} onClick={() => this.sort('bubbleSort')}>Bubble Sort</Button>
+              <Button id="insertionSort" style={{ marginRight: '8px' }} onClick={() => this.sort('insertionSort')}>Insertion Sort</Button>
+              <Button id="selectionSort" style={{ marginRight: '8px' }} onClick={() => this.sort('selectionSort')}>Selection Sort</Button>
+              <Button id="shellSort" style={{ marginRight: '8px' }} onClick={() => this.sort('shellSort')}>Shell Sort</Button>
+              <Button id="cycleSort" style={{ marginRight: '8px' }} onClick={() => this.sort('cycleSort')}>Cycle Sort</Button>
 
-        {/* this algos below does not compare array elements hence declared different function bktsort() 
+              {/* this algos below does not compare array elements hence declared different function bktsort() 
         also it requires extra array so need to work on it but the animation works fine */}
-        
-        <Button id="countingSort" style={{ marginRight: '8px' }} onClick={() => this.bktsort('countingSort')}>Counting Sort</Button>
-        <Button id="radixSort" style={{ marginRight: '8px' }} onClick={() => this.bktsort('radixSort')}>Radix Sort</Button>
-        <Button id="bucketSort" style={{ marginRight: '8px' }} onClick={() => this.bktsort('bucketSort')}>Bucket Sort</Button>
 
-        </div>
-        
+              <Button id="countingSort" style={{ marginRight: '8px' }} onClick={() => this.bktsort('countingSort')}>Counting Sort</Button>
+              <Button id="radixSort" style={{ marginRight: '8px' }} onClick={() => this.bktsort('radixSort')}>Radix Sort</Button>
+              <Button id="bucketSort" style={{ marginRight: '8px' }} onClick={() => this.bktsort('bucketSort')}>Bucket Sort</Button>
 
-           </Grid>
-           <Grid item xs={12} sm={10}>
-           <div className="array-container">
-       
-       <div className="array-container-bars">
-       <Paper className="array-container-bars-paper" elevation={3}>
-        {array.map((value, idx) => (
-          <Bars color={PRIMARY_COLOR} value={value} relativeHeight={BAR_UI_RELATIVE_HEIGHTS} key={idx}/>
-        ))}
-       </Paper>
-     </div>
-   </div>
-             
-           </Grid>
+            </div>
+
+
           </Grid>
-     
-    </div>
+          <Grid item xs={12} sm={10}>
+            <div className="array-container">
+
+              <div className="array-container-bars">
+                <Paper className="array-container-bars-paper" elevation={3}>
+                  {array.map((value, idx) => (
+                    <Bars color={PRIMARY_COLOR} value={value} relativeHeight={BAR_UI_RELATIVE_HEIGHTS} key={idx} isFirst={idx == 0} isLast={idx == array.length-1}/>
+                  ))}
+                </Paper>
+              </div>
+            </div>
+
+          </Grid>
+        </Grid>
+
+      </div>
 
     );
 
