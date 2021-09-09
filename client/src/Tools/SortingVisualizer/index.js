@@ -20,6 +20,7 @@ import Bars from "./bars"
 //Material ui components
 import {Paper , Grid , Button} from "@material-ui/core"
 
+const BAR_UI_RELATIVE_HEIGHTS = 20; //will be multiplied with array value to give bar height in pixels
 
 const ANIMATION_SPEED_MS = 50;
 
@@ -59,7 +60,7 @@ export default class SortingVisualizer extends React.Component {
   resetArray() {
     const array = [];
     for (let i = 0; i < NUMBER_OF_ARRAY_BARS; i++) {
-      array.push(randomIntFromInterval(5, 650));
+      array.push(randomIntFromInterval(5, 20));
     }
     this.setState({ array });
   }
@@ -130,7 +131,7 @@ export default class SortingVisualizer extends React.Component {
         }
         const barStyle = arrayBars[barIndex].style;
         setTimeout(() => {
-          barStyle.height = `${newHeight}px`;
+          barStyle.height = `${newHeight *  BAR_UI_RELATIVE_HEIGHTS}px`;
           arrayBarsValues[barIndex].innerText = newHeight
         }, i * ANIMATION_SPEED_MS);
       }
@@ -168,7 +169,7 @@ export default class SortingVisualizer extends React.Component {
         //swap heights
         const barStyle = arrayBars[barIndex].style;
         setTimeout(() => {
-          barStyle.height = `${newHeight}px`;
+          barStyle.height = `${newHeight * BAR_UI_RELATIVE_HEIGHTS}px`;
           arrayBarsValues[barIndex].innerText = newHeight
         }, i * ANIMATION_SPEED_MS);
       }
@@ -211,7 +212,7 @@ export default class SortingVisualizer extends React.Component {
        <div className="array-container-bars">
        <Paper className="array-container-bars-paper" elevation={3}>
         {array.map((value, idx) => (
-          <Bars color={PRIMARY_COLOR} value={value} />
+          <Bars color={PRIMARY_COLOR} value={value} relativeHeight={BAR_UI_RELATIVE_HEIGHTS} key={idx}/>
         ))}
        </Paper>
      </div>

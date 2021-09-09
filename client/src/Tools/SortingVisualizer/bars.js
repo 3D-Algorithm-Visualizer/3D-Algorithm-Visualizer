@@ -11,7 +11,7 @@ function bars(props) {
             className="array-bar"
             style={{
               backgroundColor: props.color,
-              height: `${props.value}px`,
+              height: `${props.value * props.relativeHeight}px`,
             }} />
              <div 
              className="array-bar-values"
