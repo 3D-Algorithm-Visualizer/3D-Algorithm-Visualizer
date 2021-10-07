@@ -18,11 +18,11 @@ import './index.css';
 //components
 import Bars from "./bars"
 //Material ui components
-import { Paper, Grid, Button } from "@material-ui/core"
+import { Paper, Grid, Button, Slider, Typography } from "@material-ui/core"
+import ArrayContainer from './ArrayContainer';
 
 const BAR_UI_RELATIVE_HEIGHTS = 20; //will be multiplied with array value to give bar height in pixels
 
-const ANIMATION_SPEED_MS = 100;
 
 const NUMBER_OF_ARRAY_BARS = 16;
 
@@ -47,22 +47,41 @@ const algorithms = {
 export default class SortingVisualizer extends React.Component {
   constructor(props) {
     super(props);
-
     this.state = {
       array: [],
+      iterationArray: [],
+      speed: 40,
+      speed_factor: 1000
     };
+    this.handleSpeedChange = this.handleSpeedChange.bind(this);
   }
+
 
   componentDidMount() {
-    this.resetArray();
+    this.GenerateNewArray();
   }
 
-  resetArray() {
+  GenerateNewArray() {
     const array = [];
     for (let i = 0; i < NUMBER_OF_ARRAY_BARS; i++) {
       array.push(randomIntFromInterval(5, 20));
     }
     this.setState({ array });
+    this.setState({ iterationArray: [] })
+  }
+
+
+
+  handleSpeedChange(event, value) {
+    let newSpeed
+    if (value < 10) {
+      newSpeed = 10
+    } else {
+      newSpeed = value
+    }
+    this.setState({
+      speed: newSpeed
+    })
   }
 
   disableSortButtons() {
@@ -78,6 +97,7 @@ export default class SortingVisualizer extends React.Component {
     document.getElementById("countingSort").disabled = true;
     document.getElementById("bucketSort").disabled = true;
     document.getElementById("radixSort").disabled = true;
+
   }
 
   restoreStoreButtons() {
@@ -110,7 +130,8 @@ export default class SortingVisualizer extends React.Component {
 
   bktsort(algorithmName) {
     this.disableSortButtons();
-    const [animations, sortArray] = algorithms[algorithmName](this.state.array);
+    const [animations, sortArray, iterationArray] = algorithms[algorithmName](this.state.array);
+    console.log(iterationArray)
     for (let i = 0; i < animations.length; i++) {
       const isColorChange = animations[i][0] == "comparision1" || animations[i][0] == "comparision2";
       const arrayBars = document.getElementsByClassName('array-bar');
@@ -122,7 +143,7 @@ export default class SortingVisualizer extends React.Component {
         setTimeout(() => {
           barOneStyle.backgroundColor = color;
 
-        }, i * ANIMATION_SPEED_MS);
+        }, i * (this.state.speed_factor / this.state.speed));
       }
       else {
         const [swap, barIndex, newHeight] = animations[i];
@@ -133,16 +154,17 @@ export default class SortingVisualizer extends React.Component {
         setTimeout(() => {
           barStyle.height = `${newHeight * BAR_UI_RELATIVE_HEIGHTS}px`;
           arrayBarsValues[barIndex].innerText = newHeight
-        }, i * ANIMATION_SPEED_MS);
+        }, i * (this.state.speed_factor / this.state.speed));
       }
     }
-    setTimeout(() => this.restoreStoreButtons(), (animations.length - 1) * ANIMATION_SPEED_MS);
+    setTimeout(() => this.restoreStoreButtons(), (animations.length - 1) * (this.state.speed_factor / this.state.speed));
   }
 
 
   sort(algorithmName) {
     this.disableSortButtons();
-    const [animations, sortArray] = algorithms[algorithmName](this.state.array);
+    const [animations, sortArray, iterationArray] = algorithms[algorithmName](this.state.array);
+
     for (let i = 0; i < animations.length; i++) {
       const isColorChange = animations[i][0] == "comparision1" || animations[i][0] == "comparision2";
       const arrayBars = document.getElementsByClassName('array-bar');
@@ -158,7 +180,7 @@ export default class SortingVisualizer extends React.Component {
         setTimeout(() => {
           barOneStyle.backgroundColor = barOneValueStyle.color = color;
           barTwoStyle.backgroundColor = barTwoValueStyle.color = color;
-        }, i * ANIMATION_SPEED_MS);
+        }, i * (this.state.speed_factor / this.state.speed));
       }
       else {
 
@@ -171,21 +193,31 @@ export default class SortingVisualizer extends React.Component {
         setTimeout(() => {
           barStyle.height = `${newHeight * BAR_UI_RELATIVE_HEIGHTS}px`;
           arrayBarsValues[barIndex].innerText = newHeight
-        }, i * ANIMATION_SPEED_MS);
+        }, i * (this.state.speed_factor / this.state.speed));
       }
     }
-    setTimeout(() => this.restoreStoreButtons(), (animations.length - 1) * ANIMATION_SPEED_MS);
+
+    setTimeout(() => {
+      this.restoreStoreButtons(), (animations.length - 1) * (this.state.speed_factor / this.state.speed)
+    });
+
+    setTimeout(() => {
+      this.setState({ iterationArray }), (animations.length - 1) * (this.state.speed_factor / this.state.speed)
+    });
   }
+
+
 
   render() {
     const { array } = this.state;
-
+    console.log(this.state.iterationArray)
     return (
       <div>
         <Grid container spacing={1}>
           <Grid item xs={12} sm={2}>
             <div>
-              <Button variant="contained" id="generateNewArray" style={{ marginRight: '8px' }} onClick={() => this.resetArray()}>Generate New Array</Button>
+              <Button variant="contained" id="generateNewArray" style={{ marginRight: '8px' }} onClick={() => this.GenerateNewArray()}>Generate New Array</Button>
+              <Slider value={this.state.speed} onChange={this.handleSpeedChange} aria-labelledby="continuous-slider" />
               <Button id="mergeSort" style={{ marginRight: '8px' }} onClick={() => this.sort('mergeSort')}>Merge Sort</Button>
               <Button id="quickSort" style={{ marginRight: '8px' }} onClick={() => this.sort('quickSort')}>Quick Sort</Button>
               <Button id="heapSort" style={{ marginRight: '8px' }} onClick={() => this.sort('heapSort')}>Heap Sort</Button>
@@ -207,16 +239,42 @@ export default class SortingVisualizer extends React.Component {
 
           </Grid>
           <Grid item xs={12} sm={10}>
-            <div className="array-container">
+            <Grid container spacing={1}>
+              <Grid item xs={12} sm={12}>
+                <div className="array-container">
 
-              <div className="array-container-bars">
-                <Paper className="array-container-bars-paper" elevation={3}>
-                  {array.map((value, idx) => (
-                    <Bars color={PRIMARY_COLOR} value={value} relativeHeight={BAR_UI_RELATIVE_HEIGHTS} key={idx} isFirst={idx == 0} isLast={idx == array.length-1}/>
-                  ))}
+                  <div className="array-container-bars">
+                    <Paper className="array-container-bars-paper" elevation={3}>
+                      {array.map((value, idx) => (
+                        <Bars color={PRIMARY_COLOR} value={value} relativeHeight={BAR_UI_RELATIVE_HEIGHTS} key={idx} isFirst={idx == 0} isLast={idx == array.length - 1} />
+                      ))}
+                    </Paper>
+                  </div>
+                </div>
+              </Grid>
+              <Grid item xs={12} sm={12}>
+                <Paper className="array-container array-container-bars-paper" elevation={3}>
+                  <Typography variant="h3">Iterations</Typography>
+
+                  {this.state.iterationArray && this.state.iterationArray.length > 0 &&
+                    this.state.iterationArray.map((arr, index) => {
+                      return <>
+                        {index + 1})
+                        {
+                          arr.map((num, idx) => {
+                            return <ArrayContainer key={idx} value={num} isFirst={idx == 0} isLast={idx == array.length - 1} />
+                          })
+
+                        }
+                        <br></br>
+                      </>
+
+                    }
+                    )}
                 </Paper>
-              </div>
-            </div>
+              </Grid>
+            </Grid>
+
 
           </Grid>
         </Grid>
