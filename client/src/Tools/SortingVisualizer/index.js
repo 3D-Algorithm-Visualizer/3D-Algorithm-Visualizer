@@ -51,7 +51,7 @@ export default class SortingVisualizer extends React.Component {
       array: [],
       iterationArray: [],
       speed: 40,
-      speed_factor: 1000
+      speed_factor: 3000
     };
     this.handleSpeedChange = this.handleSpeedChange.bind(this);
   }
