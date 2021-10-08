@@ -16,7 +16,7 @@ function bars(props) {
                     }} />
                 <div className="array-bar-values-parent">
                     <div className="array-bar-before-value">
-                    {props.isFirst ? "[" : ","}
+                        {props.isFirst ? "[" : ","}
                     </div>
                     <div
                         className="array-bar-values"
@@ -27,7 +27,7 @@ function bars(props) {
                         {props.value}
                     </div>
                     <div className="array-bar-after-value">
-                    {props.isLast ? "]" : null}
+                        {props.isLast ? "]" : null}
                     </div>
                 </div>
 

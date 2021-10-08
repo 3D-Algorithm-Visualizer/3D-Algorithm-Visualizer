@@ -1,15 +1,16 @@
 /*eslint-disable */
 export function getInsertionSortAnimations(array) {
     const animations = [];
+    let iterationArray = [];
     const auxillaryArray = array.slice();
-    insertionSort(auxillaryArray, animations);
+    insertionSort(auxillaryArray, animations, iterationArray);
     const javaScriptSortedArray = array.slice().sort((a, b) => a - b);
     console.log("sort works correctly? ", arraysAreEqual(javaScriptSortedArray, auxillaryArray));
     array = auxillaryArray;
-    return [animations, array];
+    return [animations, array, iterationArray];
 }
 
-function insertionSort(auxillaryArray, animations) {
+function insertionSort(auxillaryArray, animations, iterationArray) {
     const N = auxillaryArray.length;
 
     for (let i = 1; i < N; i++) {
@@ -28,6 +29,7 @@ function insertionSort(auxillaryArray, animations) {
         }
         animations.push(["overwrite", j + 1, key]);
         auxillaryArray[j + 1] = key;
+        iterationArray.push(auxillaryArray);
     }
 }
 
