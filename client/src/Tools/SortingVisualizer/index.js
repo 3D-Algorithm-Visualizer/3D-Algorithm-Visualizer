@@ -66,6 +66,7 @@ export default class SortingVisualizer extends React.Component {
     for (let i = 0; i < NUMBER_OF_ARRAY_BARS; i++) {
       array.push(randomIntFromInterval(5, 20));
     }
+    console.log(array);
     this.setState({ array });
     this.setState({ iterationArray: [] })
   }
@@ -210,7 +211,7 @@ export default class SortingVisualizer extends React.Component {
 
   render() {
     const { array } = this.state;
-    console.log(this.state.iterationArray)
+    //console.log(this.state.iterationArray)
     return (
       <div>
         <Grid container spacing={1}>
