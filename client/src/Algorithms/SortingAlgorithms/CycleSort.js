@@ -1,19 +1,20 @@
 /*eslint-disable */
 export function getCycleSortAnimations(array) {
     const animations = [];
+    let iterationArray = [];
     const auxillaryArray = array.slice();
-    cycleSort(auxillaryArray, animations);
+    cycleSort(auxillaryArray, animations, iterationArray);
     const javaScriptSortedArray = array.slice().sort((a, b) => a - b);
     console.log("sort works correctly? ", arraysAreEqual(javaScriptSortedArray, auxillaryArray));
     array = auxillaryArray;
-    return [animations, array];
+    return [animations, array, iterationArray];
 }
 
 
-function cycleSort(arr, animations) {
+function cycleSort(arr, animations, iterationArray) {
     const n = arr.length;
     let writes = 0;
-
+    let dummy = [];
     for (let cycle_start = 0; cycle_start < n - 1; cycle_start++) {
 
         let item = arr[cycle_start];
@@ -44,7 +45,6 @@ function cycleSort(arr, animations) {
             const temp = item;
             item = arr[pos];
             arr[pos] = temp;
-      
             writes++;
         }
         toswap=pos;
@@ -76,6 +76,9 @@ function cycleSort(arr, animations) {
                 // swap(arr, pos, toswap);
                 writes++;
             }
+            dummy = arr.slice();
+            console.log(dummy);
+            iterationArray.push(dummy);
         }
     }
 }

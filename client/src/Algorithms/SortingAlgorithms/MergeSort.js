@@ -1,29 +1,27 @@
 /*eslint-disable */
 export function getMergeSortAnimations(array) {
     const animations  = [];
-    let iterationArray = [];
     const auxillaryArray = array.slice();
-    mergeSort(auxillaryArray, 0, auxillaryArray.length - 1, animations, iterationArray);
+    mergeSort(auxillaryArray, 0, auxillaryArray.length - 1, animations);
     const javaScriptSortedArray = array.slice().sort((a, b) => a - b);
     console.log(arraysAreEqual(javaScriptSortedArray, auxillaryArray));
     array = auxillaryArray;
-    return [animations, array, iterationArray];
+    return [animations, array];
 }
 
-function mergeSort(auxillaryArray, startIndex, endIndex, animations, iterationArray) {
+function mergeSort(auxillaryArray, startIndex, endIndex, animations) {
     if(startIndex === endIndex)
         return;
     const middleIndex = Math.floor((startIndex + endIndex)/2);
-    mergeSort(auxillaryArray, startIndex, middleIndex, animations, iterationArray);
+    mergeSort(auxillaryArray, startIndex, middleIndex, animations);
     
-    mergeSort(auxillaryArray, middleIndex + 1, endIndex, animations, iterationArray);
+    mergeSort(auxillaryArray, middleIndex + 1, endIndex, animations);
     
-    merge(auxillaryArray, startIndex, middleIndex, endIndex, animations, iterationArray);
+    merge(auxillaryArray, startIndex, middleIndex, endIndex, animations);
 }
 
-function merge(auxillaryArray, startIndex, middleIndex, endIndex, animations, iterationArray) {
+function merge(auxillaryArray, startIndex, middleIndex, endIndex, animations) {
     const sortArray = [];
-    let dummy = [];
     let i = startIndex;
     let j = middleIndex + 1;
     while(i <= middleIndex && j <= endIndex) {
@@ -52,9 +50,6 @@ function merge(auxillaryArray, startIndex, middleIndex, endIndex, animations, it
         animations.push(["comparision2", i, i - startIndex]);
         auxillaryArray[i] = sortArray[i - startIndex];
     }
-    dummy = auxillaryArray.slice();
-    console.log(dummy);
-    iterationArray.push(dummy);
 }
 
 function arraysAreEqual(firstArray, secondArray) {
