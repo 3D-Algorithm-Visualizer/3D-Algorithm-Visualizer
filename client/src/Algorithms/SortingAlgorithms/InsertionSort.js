@@ -12,8 +12,9 @@ export function getInsertionSortAnimations(array) {
 
 function insertionSort(auxillaryArray, animations, iterationArray) {
     const N = auxillaryArray.length;
-
+    let dummy = [];
     for (let i = 1; i < N; i++) {
+
         const key = auxillaryArray[i];
         let j = i - 1;
         animations.push(["comparision1", j, i]);
@@ -29,7 +30,9 @@ function insertionSort(auxillaryArray, animations, iterationArray) {
         }
         animations.push(["overwrite", j + 1, key]);
         auxillaryArray[j + 1] = key;
-        iterationArray.push(auxillaryArray);
+        dummy = auxillaryArray.slice();
+        console.log(dummy);
+        iterationArray.push(dummy);
     }
 }
 

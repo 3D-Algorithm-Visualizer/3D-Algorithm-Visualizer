@@ -1,5 +1,6 @@
 /*eslint-disable */
 import React from 'react';
+import tcsort from './tcs-sort.png';
 //algorithms imported
 import { getMergeSortAnimations } from 'src/Algorithms/SortingAlgorithms/MergeSort';
 import { getHeapSortAnimations } from 'src/Algorithms/SortingAlgorithms/HeapSort';
@@ -66,6 +67,7 @@ export default class SortingVisualizer extends React.Component {
     for (let i = 0; i < NUMBER_OF_ARRAY_BARS; i++) {
       array.push(randomIntFromInterval(5, 20));
     }
+    console.log(array);
     this.setState({ array });
     this.setState({ iterationArray: [] })
   }
@@ -130,7 +132,8 @@ export default class SortingVisualizer extends React.Component {
   bktsort(algorithmName) {
     this.disableSortButtons();
     const [animations, sortArray, iterationArray] = algorithms[algorithmName](this.state.array);
-    console.log(iterationArray)
+    console.log(animations)
+    //console.log(iterationArray)
     for (let i = 0; i < animations.length; i++) {
       const isColorChange = animations[i][0] == "comparision1" || animations[i][0] == "comparision2";
       const arrayBars = document.getElementsByClassName('array-bar');
@@ -209,7 +212,7 @@ export default class SortingVisualizer extends React.Component {
 
   render() {
     const { array } = this.state;
-    console.log(this.state.iterationArray)
+    //console.log(this.state.iterationArray)
     return (
       <div>
         <Grid container spacing={1}>
@@ -252,6 +255,7 @@ export default class SortingVisualizer extends React.Component {
                 </div>
               </Grid>
               <Grid item xs={12} sm={12}>
+                
                 <Paper className="array-container array-container-bars-paper" elevation={3}>
                   <Typography variant="h3">Iterations</Typography>
 
@@ -271,6 +275,8 @@ export default class SortingVisualizer extends React.Component {
                     }
                     )}
                 </Paper>
+                <Typography variant="h3">Time Complexity</Typography>
+                <img src={tcsort}/>
               </Grid>
             </Grid>
           </Grid>

@@ -12,6 +12,7 @@ export function getBubbleSortAnimations(array) {
 
 function bubbleSort(auxillaryArray, animations, iterationArray) {
     const N = auxillaryArray.length;
+    let dummy = [];
     let iters = N - 1;
     while (iters > 0) {
         let swapped = false;
@@ -26,10 +27,13 @@ function bubbleSort(auxillaryArray, animations, iterationArray) {
             }
 
         }
-        iterationArray.push(auxillaryArray);
+        dummy = auxillaryArray.slice();
+        console.log(dummy);
+        iterationArray.push(dummy);
         if (swapped === false) break;
         iters--;
     }
+    console.log(animations)
 }
 
 function swap(auxillaryArray, firstIndex, secondIndex) {

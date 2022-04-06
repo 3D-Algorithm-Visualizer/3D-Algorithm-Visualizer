@@ -1,12 +1,13 @@
 /*eslint-disable */
 export function getHeapSortAnimations(array) {
     const animations = [];
+    let iterationArray = [];
     const auxillaryArray = array.slice();
-    heapSort(auxillaryArray, animations);
+    heapSort(auxillaryArray, animations, iterationArray);
     const javaScriptSortedArray = array.slice().sort((a, b) => a - b);
     console.log("sort works correctly? ", arraysAreEqual(javaScriptSortedArray, auxillaryArray));
     array = auxillaryArray;
-    return [animations, array];
+    return [animations, array, iterationArray];
 }
 
 /*
@@ -17,7 +18,9 @@ function buildHeap(auxillaryArray, N, animations){
 
 } */
 
-function heapSort(auxillaryArray, animations){
+function heapSort(auxillaryArray, animations, iterationArray){
+    let dummy = [];
+
     const N = auxillaryArray.length;
     for(let i = (N-2)/2; i>=0; i--){
         maxHeapify(auxillaryArray, N, i, animations);
@@ -28,6 +31,9 @@ function heapSort(auxillaryArray, animations){
         animations.push(["swap", 0, auxillaryArray[i]]);
         swap(auxillaryArray, i, 0);
         maxHeapify(auxillaryArray, i, 0, animations);
+        dummy = auxillaryArray.slice();
+        console.log(dummy);
+        iterationArray.push(dummy);
     }
 }
 

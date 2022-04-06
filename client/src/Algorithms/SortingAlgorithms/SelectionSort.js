@@ -12,6 +12,7 @@ export function getSelectionSortAnimations(array) {
 
 function selectionSort(auxillaryArray, animations, iterationArray) {
     const N = auxillaryArray.length;
+    let dummy = [];
     for (let i = 0; i < N; i++) {
         let min_index = i;
         for (let j = i + 1; j < N; j++) {
@@ -24,7 +25,9 @@ function selectionSort(auxillaryArray, animations, iterationArray) {
         animations.push(["swap", min_index, auxillaryArray[i]]);
         animations.push(["swap", i, auxillaryArray[min_index]]);
         swap(auxillaryArray, min_index, i);
-        iterationArray.push(auxillaryArray);
+        dummy = auxillaryArray.slice();
+        console.log(dummy);
+        iterationArray.push(dummy);
     }
 }
 

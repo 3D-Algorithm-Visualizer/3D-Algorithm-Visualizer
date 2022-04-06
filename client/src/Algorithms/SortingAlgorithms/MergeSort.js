@@ -14,7 +14,9 @@ function mergeSort(auxillaryArray, startIndex, endIndex, animations) {
         return;
     const middleIndex = Math.floor((startIndex + endIndex)/2);
     mergeSort(auxillaryArray, startIndex, middleIndex, animations);
+    
     mergeSort(auxillaryArray, middleIndex + 1, endIndex, animations);
+    
     merge(auxillaryArray, startIndex, middleIndex, endIndex, animations);
 }
 

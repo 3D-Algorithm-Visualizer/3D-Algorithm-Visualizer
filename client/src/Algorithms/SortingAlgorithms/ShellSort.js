@@ -1,16 +1,17 @@
 /*eslint-disable */
 export function getShellSortAnimations(array){
     const animations  = [];
+    let iterationArray = [];
     const auxillaryArray = array.slice();
-    shellSort(auxillaryArray, animations);
+    shellSort(auxillaryArray, animations, iterationArray);
     const javaScriptSortedArray = array.slice().sort((a, b) => a - b);
     console.log("sort works correctly? ",arraysAreEqual(javaScriptSortedArray, auxillaryArray));
     array = auxillaryArray;
-    return [animations, array];
+    return [animations, array, iterationArray];
 }
-function shellSort(auxillaryArray, animations) {
+function shellSort(auxillaryArray, animations, iterationArray) {
 	const n = auxillaryArray.length;
-
+    let dummy = [];
 	for (let gap = Math.floor(n/2); gap > 0; gap = Math.floor(gap/2))	{
 		for (let i = gap; i < n; i += 1)  {
 			const temp = auxillaryArray[i];
@@ -26,6 +27,9 @@ function shellSort(auxillaryArray, animations) {
             animations.push(["overwrite", j, temp]);
 			auxillaryArray[j] = temp;
 		}
+        dummy = auxillaryArray.slice();
+        console.log(dummy);
+        iterationArray.push(dummy);
 	}
 }
 

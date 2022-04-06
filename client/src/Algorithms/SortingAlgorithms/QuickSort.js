@@ -1,26 +1,27 @@
 /*eslint-disable */
 export function getQuickSortAnimations(array) {
     const animations = [];
+    let iterationArray = [];
     const auxillaryArray = array.slice();
-    quickSort(auxillaryArray, 0, auxillaryArray.length - 1, animations);
+    quickSort(auxillaryArray, 0, auxillaryArray.length - 1, animations, iterationArray);
     const javaScriptSortedArray = array.slice().sort((a, b) => a - b);
     console.log("sort works correctly? ", arraysAreEqual(javaScriptSortedArray, auxillaryArray));
     array = auxillaryArray;
-    return [animations, array];
+    return [animations, array, iterationArray];
 }
 
-function quickSort(auxillaryArray, startIndex, endIndex, animations) {
+function quickSort(auxillaryArray, startIndex, endIndex, animations, iterationArray) {
     let pivotIndex;
     if (startIndex < endIndex) {
-        pivotIndex = partitionArray(auxillaryArray, startIndex, endIndex, animations);
-        quickSort(auxillaryArray, startIndex, pivotIndex - 1, animations);
-        quickSort(auxillaryArray, pivotIndex + 1, endIndex, animations);
+        pivotIndex = partitionArray(auxillaryArray, startIndex, endIndex, animations, iterationArray);
+        quickSort(auxillaryArray, startIndex, pivotIndex - 1, animations, iterationArray);
+        quickSort(auxillaryArray, pivotIndex + 1, endIndex, animations, iterationArray);
     }
 }
 
-function partitionArray(auxillaryArray, startIndex, endIndex, animations) {
+function partitionArray(auxillaryArray, startIndex, endIndex, animations, iterationArray) {
     const pivotIndex = randomIntFromInterval(startIndex, endIndex);
-
+    let dummy = [];
     animations.push(["comparision1", pivotIndex, endIndex]);
     animations.push(["swap", pivotIndex, auxillaryArray[endIndex]]);
     animations.push(["swap", endIndex, auxillaryArray[pivotIndex]]);
@@ -47,6 +48,9 @@ function partitionArray(auxillaryArray, startIndex, endIndex, animations) {
     animations.push(["comparision2", lessTailIndex, endIndex]);
 
     swap(auxillaryArray, lessTailIndex, endIndex);
+    dummy = auxillaryArray.slice();
+    console.log(dummy);
+    iterationArray.push(dummy);
     return lessTailIndex;
 }
 
