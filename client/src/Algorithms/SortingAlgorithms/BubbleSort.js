@@ -33,6 +33,7 @@ function bubbleSort(auxillaryArray, animations, iterationArray) {
         if (swapped === false) break;
         iters--;
     }
+    console.log(animations)
 }
 
 function swap(auxillaryArray, firstIndex, secondIndex) {
