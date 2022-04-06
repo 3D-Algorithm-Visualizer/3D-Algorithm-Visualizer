@@ -71,7 +71,6 @@ export default class SortingVisualizer extends React.Component {
   }
 
 
-
   handleSpeedChange(event, value) {
     let newSpeed
     if (value < 10) {
@@ -274,8 +273,6 @@ export default class SortingVisualizer extends React.Component {
                 </Paper>
               </Grid>
             </Grid>
-
-
           </Grid>
         </Grid>
 
